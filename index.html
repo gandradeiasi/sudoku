@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku</title>
+    <style>
+        .inputs {
+            max-width: 400px;
+            margin: auto;
+            display: block;
+        }
+
+        .sudoku {
+            display: flex;
+            width: 300px;
+            flex-wrap: wrap;
+            flex-direction: row;
+            margin: auto;
+            margin-top: 3rem;
+        }
+
+        .quadrante {
+            display: flex;
+            width: 90px;
+            flex-wrap: wrap;
+            flex-direction: row;
+            border: 2px solid;
+        }
+
+        .celula {
+            width: 28px;
+            font-size: 20px;
+            text-align: center;
+            padding: 2.5px 0;
+            border: 1px solid black;
+            background-color: white;
+        }
+
+        .oculta {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sudoku">
+        <div class="quadrante">
+            <div class="celula" data-celula="c11"></div>
+            <div class="celula" data-celula="c12"></div>
+            <div class="celula" data-celula="c13"></div>
+            <div class="celula" data-celula="c21"></div>
+            <div class="celula" data-celula="c22"></div>
+            <div class="celula" data-celula="c23"></div>
+            <div class="celula" data-celula="c31"></div>
+            <div class="celula" data-celula="c32"></div>
+            <div class="celula" data-celula="c33"></div>
+        </div>
+        <div class="quadrante">
+            <div class="celula" data-celula="c14"></div>
+            <div class="celula" data-celula="c15"></div>
+            <div class="celula" data-celula="c16"></div>
+            <div class="celula" data-celula="c24"></div>
+            <div class="celula" data-celula="c25"></div>
+            <div class="celula" data-celula="c26"></div>
+            <div class="celula" data-celula="c34"></div>
+            <div class="celula" data-celula="c35"></div>
+            <div class="celula" data-celula="c36"></div>
+        </div>
+        <div class="quadrante">
+            <div class="celula" data-celula="c17"></div>
+            <div class="celula" data-celula="c18"></div>
+            <div class="celula" data-celula="c19"></div>
+            <div class="celula" data-celula="c27"></div>
+            <div class="celula" data-celula="c28"></div>
+            <div class="celula" data-celula="c29"></div>
+            <div class="celula" data-celula="c37"></div>
+            <div class="celula" data-celula="c38"></div>
+            <div class="celula" data-celula="c39"></div>
+        </div>
+        <div class="quadrante">
+            <div class="celula" data-celula="c41"></div>
+            <div class="celula" data-celula="c42"></div>
+            <div class="celula" data-celula="c43"></div>
+            <div class="celula" data-celula="c51"></div>
+            <div class="celula" data-celula="c52"></div>
+            <div class="celula" data-celula="c53"></div>
+            <div class="celula" data-celula="c61"></div>
+            <div class="celula" data-celula="c62"></div>
+            <div class="celula" data-celula="c63"></div>
+        </div>
+        <div class="quadrante">
+            <div class="celula" data-celula="c44"></div>
+            <div class="celula" data-celula="c45"></div>
+            <div class="celula" data-celula="c46"></div>
+            <div class="celula" data-celula="c54"></div>
+            <div class="celula" data-celula="c55"></div>
+            <div class="celula" data-celula="c56"></div>
+            <div class="celula" data-celula="c64"></div>
+            <div class="celula" data-celula="c65"></div>
+            <div class="celula" data-celula="c66"></div>
+        </div>
+        <div class="quadrante">
+            <div class="celula" data-celula="c47"></div>
+            <div class="celula" data-celula="c48"></div>
+            <div class="celula" data-celula="c49"></div>
+            <div class="celula" data-celula="c57"></div>
+            <div class="celula" data-celula="c58"></div>
+            <div class="celula" data-celula="c59"></div>
+            <div class="celula" data-celula="c67"></div>
+            <div class="celula" data-celula="c68"></div>
+            <div class="celula" data-celula="c69"></div>
+        </div>
+        <div class="quadrante">
+            <div class="celula" data-celula="c71"></div>
+            <div class="celula" data-celula="c72"></div>
+            <div class="celula" data-celula="c73"></div>
+            <div class="celula" data-celula="c81"></div>
+            <div class="celula" data-celula="c82"></div>
+            <div class="celula" data-celula="c83"></div>
+            <div class="celula" data-celula="c91"></div>
+            <div class="celula" data-celula="c92"></div>
+            <div class="celula" data-celula="c93"></div>
+        </div>
+        <div class="quadrante">
+            <div class="celula" data-celula="c74"></div>
+            <div class="celula" data-celula="c75"></div>
+            <div class="celula" data-celula="c76"></div>
+            <div class="celula" data-celula="c84"></div>
+            <div class="celula" data-celula="c85"></div>
+            <div class="celula" data-celula="c86"></div>
+            <div class="celula" data-celula="c94"></div>
+            <div class="celula" data-celula="c95"></div>
+            <div class="celula" data-celula="c96"></div>
+        </div>
+        <div class="quadrante">
+            <div class="celula" data-celula="c77"></div>
+            <div class="celula" data-celula="c78"></div>
+            <div class="celula" data-celula="c79"></div>
+            <div class="celula" data-celula="c87"></div>
+            <div class="celula" data-celula="c88"></div>
+            <div class="celula" data-celula="c89"></div>
+            <div class="celula" data-celula="c97"></div>
+            <div class="celula" data-celula="c98"></div>
+            <div class="celula" data-celula="c99"></div>
+        </div>
+    </div>
+    <div class="inputs">
+        <label>
+            <p>Células ocultas:</p><input id="celulas_ocultas" min="0" max="81" value="36" type="numver">
+        </label>
+
+        <button id="gerar">Gerar</button>
+        <button id="mostrar_solucao">Mostrar solução</button>
+    </div>
+
+</body>
+
+<script>
+    Array.prototype.adicionarNumerosAoPool = function (quantidade, numero) {
+        for (let i = 0; i < quantidade; i++)
+            this.push(numero);
+    }
+
+    Array.prototype.remove = function (removed_item) {
+        var itemRemovido = false;
+        var final_array = [];
+        this.forEach(item => {
+            if (item != removed_item || itemRemovido)
+                final_array.push(item);
+            else itemRemovido = true;
+        })
+        return final_array;
+    }
+
+    Array.prototype.random = function () {
+        return this[Math.floor(Math.random() * this.length)]
+    }
+
+    document.querySelector('#gerar').onclick = tentaCriarTabuleiro;
+    document.querySelector('#mostrar_solucao').onclick = mostraSolucao;
+
+    function tentaCriarTabuleiro() {
+        mostraSolucao();
+        const num_linhas = 9;
+        const num_colunas = 9;
+        const num_numeros_repetidos = 9;
+        const num_numeros_distintos = 9;
+        const quadrantes_por_linha = 3;
+        const quadrantes_por_coluna = 3;
+        const tabuleiro = {};
+
+        let pool_numeros = [];
+
+        for (let i = 1; i <= num_numeros_distintos; i++)
+            pool_numeros.adicionarNumerosAoPool(num_numeros_repetidos, i);
+
+        for (let i = 1; i <= num_linhas; i++) {
+            for (let j = 1; j <= num_colunas; j++) {
+                tabuleiro["c" + i + j] = {
+                    numero: " ",
+                    linha: i,
+                    coluna: j,
+                    quadrante: "q" + Math.floor((i - 1) / quadrantes_por_linha) + Math.floor((j - 1) / quadrantes_por_coluna)
+                };
+            }
+        }
+
+        var tabuleiro_sucesso = true;
+
+        for (let i = 1; i <= num_linhas; i++) {
+            for (let j = 1; j <= num_colunas; j++) {
+                var tentativas = 0;
+                while (true) {
+                    var numero_testado = pool_numeros.random();
+                    var celula = "c" + i + j;
+
+                    if (podeEncaixarNumeroNaCelular(tabuleiro, celula, numero_testado)) {
+                        tabuleiro[celula].numero = numero_testado;
+                        pool_numeros = pool_numeros.remove(numero_testado);
+                        break;
+                    }
+
+                    tentativas++;
+
+                    if (tentativas > num_linhas * num_colunas) {
+                        tabuleiro_sucesso = false;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (!tabuleiro_sucesso) tentaCriarTabuleiro();
+        else imprimeTabuleiro(tabuleiro, num_linhas, num_colunas);
+    }
+
+    function imprimeTabuleiro(tabuleiro, num_linhas, num_colunas) {
+        ocultaCelulas(document.querySelector("#celulas_ocultas").value);
+
+        for (let i = 1; i <= num_linhas; i++) {
+            for (let j = 1; j <= num_colunas; j++) {
+                var celula = "c" + i + j;
+                document.querySelector('.celula[data-celula="' + celula + '"]').innerHTML = tabuleiro[celula].numero;
+            }
+        }
+    }
+
+    function ocultaCelulas(numero) {
+        var celulas = [...document.querySelectorAll(".celula")];
+
+        for (let i = 0; i < numero; i++) {
+            while (true) {
+                var celula_sorteada = celulas[Math.floor(celulas.length * Math.random())];
+                if (!celula_sorteada.classList.contains('oculta')) {
+                    celula_sorteada.classList.add('oculta');
+                    break;
+                }
+
+            }
+        }
+    }
+
+    function mostraSolucao() {
+        document.querySelectorAll('.oculta').forEach(celula => celula.classList.remove('oculta'));
+    }
+
+    function podeEncaixarNumeroNaCelular(tabuleiro, celula, numero_testado) {
+        const celulas_do_tabuleiro = Object.values(tabuleiro);
+        const obj_celula = tabuleiro[celula];
+
+        const celulas_de_mesma_linha = celulas_do_tabuleiro.filter(celula_tabuleiro =>
+            celula_tabuleiro.linha == obj_celula.linha
+        )
+
+        const celulas_de_mesma_coluna = celulas_do_tabuleiro.filter(celula_tabuleiro =>
+            celula_tabuleiro.coluna == obj_celula.coluna
+        )
+
+        const celulas_de_mesmo_quadrante = celulas_do_tabuleiro.filter(celula_tabuleiro =>
+            celula_tabuleiro.quadrante == obj_celula.quadrante
+        )
+
+        const pode_encaixar_na_linha = !celulas_de_mesma_linha.some(celula_linha =>
+            celula_linha.numero == numero_testado
+        )
+
+        const pode_encaixar_na_coluna = !celulas_de_mesma_coluna.some(celula_coluna =>
+            celula_coluna.numero == numero_testado
+        )
+
+        const pode_encaixar_no_quadrante = !celulas_de_mesmo_quadrante.some(celula_quadrante =>
+            celula_quadrante.numero == numero_testado
+        )
+
+        return (pode_encaixar_na_coluna && pode_encaixar_na_linha && pode_encaixar_no_quadrante);
+    }
+</script>
+
+</html>
